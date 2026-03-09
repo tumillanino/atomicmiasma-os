@@ -3,11 +3,11 @@
 # image will be published to ghcr.io/<user>/<name>
 name: atomicmiasma-os
 # description will be included in the image's metadata
-description: This is my personal OS image.
+description: This is my personal OS image with Secureblue as its core.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/silverblue-main
-image-version: 42 # latest is also supported if you want new updates ASAP
+base-image: ghcr.io/secureblue/kinoite
+image-version: latest # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
 # you can include multiple instances of the same module
@@ -17,21 +17,102 @@ modules:
       - source: system
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
+  - type: script
+    scripts:
+      - install-lix.sh
+
+  - type: systemd
+    system:
+      enabled:
+        - nix-overlay.service
+        - nix-daemon.service
+        - nix-daemon.socket
+
   - type: dnf
     repos:
       copr:
-        - atim/starship
+        - wojnilowicz/ungoogled-chromium 
     install:
       packages:
-        - micro
-        - starship
+        - ungoogled-chromium
+        - kde-connect
+        - kde-connect-libs
+        - kdeconnectd
+        - fedora-chromium-config-kde
+        - fedora-flathub-remote
+        # depends on fedora-flathub-remote
+        - plasma-welcome-fedora
+        - fuse-encfs
+        - krfb
+        - krfb-libs
+        - plasma-browser-integration
+        - plasma-discover
+        - fedora-workstation-repositories
+        - fedora-third-party
+        - neovim
+        - tmux
+  - type: dnf
+    install:
+      install-weak-deps: false
+      packages:
+        - krunner-bazaar
+  - type: files
+    files:
+      - source: system/kinoite
+        destination: /
+  - type: justfiles
+    validate: true
+    include:
+      - kinoite.just
+  - type: script
+    scripts:
+      - setdefaultkdewallpapers.sh
+      - systemsettings-standard-malloc.sh
+      - removekrunnerappstream.sh
+  - type: dnf
+source: ghcr.io/blue-build/modules@sha256:23b9c9a2032ac653bf6a73a3b9372c12004211e004eea4269a8d3da9001c2301
+install:
+  install-weak-deps: false
+  packages:
+    - hardened_malloc
+    - run0edit
+    - dnsconfd-unbound
+
+    # missing upstream
+    - openssl
+    - patch
+    - 7zip-standalone-all
+    - 7zip
+    - distrobox
+    - toolbox
+    - podman
+    - nvme-cli
+    - hdparm
+    - wireguard-tools
+    - gettext
+    - rsync
+    - steam-devices
+
+    # signing deps
+    - sbsigntools
+
+    # address hardened_malloc incompatibilities
+    - no_rlimit_as
+
+    # For use in unprivileged ujust scripts
+    - python3-inquirer
+
+    # provenance deps
+    - crane
+    - slsa-verifier
+    
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
         # "firefox" is the main package, "firefox-langpacks" is a dependency
         - firefox
-        - firefox-langpacks # also remove firefox dependency (not required for all packages, this is a special case)
-
+        - firefox-langpacks
+        
   - type: default-flatpaks
     configurations:
       - notify: true # Send notification after install/uninstall is finished (true/false)
