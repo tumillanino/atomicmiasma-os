@@ -107,12 +107,6 @@ modules:
       - setdefaultkdewallpapers.sh
       - systemsettings-standard-malloc.sh
       - removekrunnerappstream.sh
-  - type: dnf
-    install:
-      install-weak-deps: false
-        packages:
-
-    
         
   - type: default-flatpaks
     configurations:
