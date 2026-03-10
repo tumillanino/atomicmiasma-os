@@ -39,53 +39,53 @@ modules:
   - type: dnf
     install:
       packages:
-        - kde-connect
-        - kde-connect-libs
-        - kdeconnectd
-        - fedora-chromium-config-kde
-        - fedora-flathub-remote
-        # depends on fedora-flathub-remote
-        - plasma-welcome-fedora
-        - fuse-encfs
-        - krfb
-        - krfb-libs
-        - plasma-browser-integration
-        - plasma-discover
-        - fedora-workstation-repositories
-        - fedora-third-party
+#        - kde-connect
+#        - kde-connect-libs
+#        - kdeconnectd
+#        - fedora-chromium-config-kde
+#        - fedora-flathub-remote
+#        # depends on fedora-flathub-remote
+#        - plasma-welcome-fedora
+#        - fuse-encfs
+#        - krfb
+#        - krfb-libs
+#        - plasma-browser-integration
+#        - plasma-discover
+#        - fedora-workstation-repositories
+#        - fedora-third-party
         - neovim
         - tmux
 #        - hardened_malloc
 #        - run0edit
 #        - dnsconfd-unbound
       
-          # missing upstream
-        - openssl
-        - patch
-        - 7zip-standalone-all
-        - 7zip
-        - distrobox
-        - toolbox
-        - podman
-        - nvme-cli
-        - hdparm
-        - wireguard-tools
-        - gettext
-        - rsync
-        - steam-devices
+#        - openssl
+#        - patch
+#        - 7zip-standalone-all
+#        - 7zip
+#        - distrobox
+#        - toolbox
+#        - podman
+#        - nvme-cli
+#        - hdparm
+#        - wireguard-tools
+#        - gettext
+#        - rsync
+#        - steam-devices
     
           # signing deps
-        - sbsigntools
+#        - sbsigntools
       
           # address hardened_malloc incompatibilities
-        - no_rlimit_as
+#        - no_rlimit_as
       
           # For use in unprivileged ujust scripts
-        - python3-inquirer
+#        - python3-inquirer
       
           # provenance deps
-        - crane
-        - slsa-verifier
+#        - crane
+#        - slsa-verifier
+#        - krunner-bazaar
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -93,11 +93,6 @@ modules:
         - firefox
         - firefox-langpacks
         
-  - type: dnf
-    install:
-      install-weak-deps: false
-      packages:
-        - krunner-bazaar
 #  - type: files
 #    files:
 #      - source: system/kinoite
