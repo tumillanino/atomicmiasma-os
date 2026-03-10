@@ -71,7 +71,7 @@ modules:
       - removekrunnerappstream.sh
   - type: dnf
     install:
-    install-weak-deps: false
+#    install-weak-deps: false
     packages:
       - hardened_malloc
       - run0edit
