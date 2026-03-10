@@ -51,6 +51,44 @@ modules:
         - fedora-third-party
         - neovim
         - tmux
+        - hardened_malloc
+        - run0edit
+        - dnsconfd-unbound
+      
+          # missing upstream
+        - openssl
+        - patch
+        - 7zip-standalone-all
+        - 7zip
+        - distrobox
+        - toolbox
+        - podman
+        - nvme-cli
+        - hdparm
+        - wireguard-tools
+        - gettext
+        - rsync
+        - steam-devices
+    
+          # signing deps
+        - sbsigntools
+      
+          # address hardened_malloc incompatibilities
+        - no_rlimit_as
+      
+          # For use in unprivileged ujust scripts
+        - python3-inquirer
+      
+          # provenance deps
+        - crane
+        - slsa-verifier
+    remove:
+      packages:
+        # example: removing firefox (in favor of the flatpak)
+        # "firefox" is the main package, "firefox-langpacks" is a dependency
+        - firefox
+        - firefox-langpacks
+        
   - type: dnf
     install:
       install-weak-deps: false
@@ -73,44 +111,8 @@ modules:
     install:
       install-weak-deps: false
         packages:
-          - hardened_malloc
-          - run0edit
-          - dnsconfd-unbound
-      
-          # missing upstream
-          - openssl
-          - patch
-          - 7zip-standalone-all
-          - 7zip
-          - distrobox
-          - toolbox
-          - podman
-          - nvme-cli
-          - hdparm
-          - wireguard-tools
-          - gettext
-          - rsync
-          - steam-devices
+
     
-          # signing deps
-          - sbsigntools
-      
-          # address hardened_malloc incompatibilities
-          - no_rlimit_as
-      
-          # For use in unprivileged ujust scripts
-          - python3-inquirer
-      
-          # provenance deps
-          - crane
-          - slsa-verifier
-    
-    remove:
-      packages:
-        # example: removing firefox (in favor of the flatpak)
-        # "firefox" is the main package, "firefox-langpacks" is a dependency
-        - firefox
-        - firefox-langpacks
         
   - type: default-flatpaks
     configurations:
