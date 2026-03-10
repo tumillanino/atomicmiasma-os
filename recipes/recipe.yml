@@ -35,6 +35,10 @@ modules:
     install:
       packages:
         - ungoogled-chromium
+      
+  - type: dnf
+    install:
+      packages:
         - kde-connect
         - kde-connect-libs
         - kdeconnectd
@@ -51,9 +55,9 @@ modules:
         - fedora-third-party
         - neovim
         - tmux
-        - hardened_malloc
-        - run0edit
-        - dnsconfd-unbound
+#        - hardened_malloc
+#        - run0edit
+#        - dnsconfd-unbound
       
           # missing upstream
         - openssl
