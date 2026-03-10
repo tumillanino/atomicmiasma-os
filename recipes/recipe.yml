@@ -87,7 +87,7 @@ modules:
         - secureblue/selinux-policy
         - secureblue/crane
         - secureblue/run0edit
-        -avengemedia/danklinux
+        - avengemedia/danklinux
 
     install:
       packages:
