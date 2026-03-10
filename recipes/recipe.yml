@@ -6,7 +6,7 @@ name: atomicmiasma-os
 description: This is my personal OS image testing with various features and modules from ghcr.io/randogoth/deinonyxus and ghcr.io/secureblue/secureblue.
 
 # the base image to build on top of (FROM) and the version tag to use
-base-image: ghcr.io/ublue-os/aurora-dx
+base-image: ghcr.io/ublue-os/base-main
 image-version: latest # latest is also supported if you want new updates ASAP
 
 # module configuration, executed in order
@@ -28,63 +28,47 @@ modules:
         - nix-daemon.service
         - nix-daemon.socket
 
-  - type: dnf
-    repos:
-      copr:
-        - wojnilowicz/ungoogled-chromium 
-    install:
-      packages:
-        - ungoogled-chromium
       
   - type: dnf
     install:
       packages:
-#        - kde-connect
-#        - kde-connect-libs
-#        - kdeconnectd
-#        - fedora-chromium-config-kde
-#        - fedora-flathub-remote
-#        # depends on fedora-flathub-remote
-#        - plasma-welcome-fedora
+        - niri
+        - zsh
+        - fedora-chromium-config-kde
+        - fedora-flathub-remote
 #        - fuse-encfs
 #        - krfb
 #        - krfb-libs
-#        - plasma-browser-integration
-#        - plasma-discover
 #        - fedora-workstation-repositories
 #        - fedora-third-party
         - neovim
         - tmux
-#        - hardened_malloc
-#        - run0edit
+        - alacritty
 #        - dnsconfd-unbound
       
-#        - openssl
+        - openssl
+        - openssh
 #        - patch
 #        - 7zip-standalone-all
-#        - 7zip
-#        - distrobox
-#        - toolbox
-#        - podman
+        - 7zip
+        - distrobox
+        - toolbox
+        - podman
 #        - nvme-cli
 #        - hdparm
 #        - wireguard-tools
 #        - gettext
-#        - rsync
+        - rsync
 #        - steam-devices
     
           # signing deps
 #        - sbsigntools
       
-          # address hardened_malloc incompatibilities
-#        - no_rlimit_as
       
           # For use in unprivileged ujust scripts
 #        - python3-inquirer
       
           # provenance deps
-#        - crane
-#        - slsa-verifier
 #        - krunner-bazaar
     remove:
       packages:
@@ -92,6 +76,31 @@ modules:
         # "firefox" is the main package, "firefox-langpacks" is a dependency
         - firefox
         - firefox-langpacks
+
+  - type: dnf
+    repos:
+      copr:
+        - wojnilowicz/ungoogled-chromium 
+        - avengemedia/dms-greeter
+        - secureblue/hardened_malloc
+        - secureblue/no_rlimit_as
+        - secureblue/selinux-policy
+        - secureblue/crane
+        - secureblue/run0edit
+        -avengemedia/danklinux
+
+    install:
+      packages:
+        - ungoogled-chromium
+        - dms
+        - dms-greeter
+        - hardened_malloc
+       # address hardened_malloc incompatibilities
+        - no_rlimit_as
+        - selinux-policy
+        - crane
+        - run0edit
+        - danklinux
         
 #  - type: files
 #    files:
@@ -118,3 +127,7 @@ modules:
       - scope: user # Also add Flathub user repo, but no user packages
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
+
+  - type: script
+    scripts:
+      - update-shell.sh
