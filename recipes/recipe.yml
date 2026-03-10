@@ -81,7 +81,7 @@ modules:
       
           # provenance deps
         - crane
-#        - slsa-verifier
+        - slsa-verifier
     remove:
       packages:
         # example: removing firefox (in favor of the flatpak)
@@ -94,19 +94,19 @@ modules:
       install-weak-deps: false
       packages:
         - krunner-bazaar
-  - type: files
-    files:
-      - source: system/kinoite
-        destination: /
-  - type: justfiles
-    validate: true
-    include:
-      - kinoite.just
-  - type: script
-    scripts:
-      - setdefaultkdewallpapers.sh
-      - systemsettings-standard-malloc.sh
-      - removekrunnerappstream.sh
+#  - type: files
+#    files:
+#      - source: system/kinoite
+#        destination: /
+#  - type: justfiles
+#    validate: true
+#    include:
+#      - kinoite.just
+#  - type: script
+#    scripts:
+#      - setdefaultkdewallpapers.sh
+#      - systemsettings-standard-malloc.sh
+#      - removekrunnerappstream.sh
         
   - type: default-flatpaks
     configurations:
