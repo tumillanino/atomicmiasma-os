@@ -81,7 +81,6 @@ modules:
     repos:
       copr:
         - wojnilowicz/ungoogled-chromium 
-        - avengemedia/dms-greeter
         - avengemedia/dms-git
         - secureblue/hardened_malloc
         - secureblue/no_rlimit_as
