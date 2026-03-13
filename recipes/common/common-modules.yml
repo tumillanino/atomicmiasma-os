@@ -192,6 +192,7 @@ modules:
           - nix-daemon.socket
           - niri.service
           - dms.service
+          - dms-greetd.service
 
 #    - type: wayblue-signing
 #      source: local
