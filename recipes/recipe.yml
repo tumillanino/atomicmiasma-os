@@ -108,7 +108,7 @@ modules:
         - nix-daemon.service
         - nix-daemon.socket
         - niri.service
-        - dms-service.service
+        - dms.service
 #  - type: files
 #    files:
 #      - source: system/kinoite
