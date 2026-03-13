@@ -16,6 +16,3 @@ modules:
         - source: system/niri
           destination: /
 
-    - type: script
-      scripts:
-        - setniriwaybarmodules.sh
