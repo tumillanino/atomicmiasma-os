@@ -2,7 +2,6 @@ modules:
     - type: rpm-ostree
       install:
         - niri
-        - waybar
         - xdg-desktop-portal-wlr
         - xdg-desktop-portal-gtk
         - alacritty
