@@ -127,7 +127,7 @@ modules:
           - wlsunset
           - brightnessctl
           - kanshi
-          - quickshell
+          - quickshell-git
           - cava
           - matugen
 
