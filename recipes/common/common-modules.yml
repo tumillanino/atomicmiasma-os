@@ -178,7 +178,7 @@ modules:
         - addbrewjustimport.sh
         - install-lix.sh
         - install-lazyvim.sh
-        - enableniridms.sh
+#        - enableniridms.sh
 
     - type: systemd
       user:
