@@ -99,7 +99,7 @@ modules:
     scripts:
       - install-lix.sh
       - install-lazyvim.sh
-      - update-shell.sh
+#      - update-shell.sh
 
   - type: systemd
     system:
