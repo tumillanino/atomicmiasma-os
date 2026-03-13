@@ -90,7 +90,7 @@ modules:
           - pipewire
           - pamixer
           - pulseaudio-utils
-          - qt6-multimedia
+          - qt6-qtmultimedia
 
         # networking
           - network-manager-applet
