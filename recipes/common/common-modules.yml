@@ -193,5 +193,5 @@ modules:
           - niri.service
           - dms.service
 
-    - type: wayblue-signing
-      source: local
+#    - type: wayblue-signing
+#      source: local
