@@ -184,15 +184,15 @@ modules:
       user:
         enabled:
           - wayblue-update-verification.service
+          - niri.service
+          - dms.service
+          - dms-greetd.service
       system:
         enabled:
           - wayblue-rpm-ostreed-conf.service
           - nix-overlay.service
           - nix-daemon.service
           - nix-daemon.socket
-          - niri.service
-          - dms.service
-          - dms-greetd.service
 
 #    - type: wayblue-signing
 #      source: local
