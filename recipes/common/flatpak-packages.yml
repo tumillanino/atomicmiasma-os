@@ -1,0 +1,13 @@
+modules:
+  - type: default-flatpaks
+    configurations:
+      - notify: true
+        scope: system
+        install:
+          - com.ranfdev.DistroShelf
+          - org.kde.haruna
+          - org.gnome.Decibels
+          - org.gnome.Loupe
+      - scope: user
+        remove:
+          - org.mozilla.firefox

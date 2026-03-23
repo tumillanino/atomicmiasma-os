@@ -1,0 +1,18 @@
+modules:
+
+    - type: systemd
+      user:
+        enabled:
+          - niri.service
+          - dms.service
+          - dms-greetd.service
+      system:
+        enabled:
+          - nix-overlay.service
+          - nix-daemon.service
+          - nix-daemon.socket
+
+    - type: system
+      etc:
+        enabled:
+          - greetd.service
