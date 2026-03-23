@@ -5,11 +5,6 @@ modules:
       copr:
         - wojnilowicz/ungoogled-chromium 
         - avengemedia/dms-git
-        - secureblue/hardened_malloc
-        - secureblue/no_rlimit_as
-        - secureblue/selinux-policy
-        - secureblue/crane
-        - secureblue/run0edit
         - avengemedia/danklinux
 
     install:
@@ -17,12 +12,6 @@ modules:
         - ungoogled-chromium
         - dms
         - dms-greeter
-        - hardened_malloc
-       # address hardened_malloc incompatibilities
-        - no_rlimit_as
-        - selinux-policy
-        - crane
-        - run0edit
         - danksearch
         - ghostty
         - matugen

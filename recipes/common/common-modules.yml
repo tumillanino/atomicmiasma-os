@@ -5,12 +5,6 @@ modules:
         - COPY --from=ghcr.io/ublue-os/akmods:main-43 /kernel-rpms /tmp/rpms/kernel
         - RUN find /tmp/rpms
         - RUN rpm -q ublue-os-akmods-addons || dnf install -y /tmp/rpms/ublue-os/ublue-os-akmods-addons*.rpm
-    - type: script
-      scripts:
-        - installsignedkernel.sh
-        # remove line below once rpm-ostree is fixed
-        - pinrpmostree.sh
-
     - type: dnf
       install:
         install-weak-deps: false
@@ -18,24 +12,6 @@ modules:
           - just
           - powerstat
 
-    - type: dnf
-      repos:
-        files:
-          - https://copr.fedorainfracloud.org/coprs/ublue-os/packages/repo/fedora-%OS_VERSION%/ublue-os-packages-fedora-%OS_VERSION%.repo
-      install:
-        install-weak-deps: false
-        packages:
-          - ublue-os-udev-rules
-          - ublue-os-update-services
-          - ublue-os-signing
-          - ublue-os-luks
-          - ublue-os-just
-
-    - type: script
-      scripts:
-        - installandroidudev.sh
-        - ensureautoupdates.sh
-        - addimageinfo.sh
 
     - type: dnf
       install:
@@ -155,12 +131,7 @@ modules:
           - firefox
           - firefox-langpacks
 
-    - from-file: common/proprietary-modules.yml
 
-    - type: script
-      scripts:
-        - installrpmfusion.sh
-        - removeunusedrepos.sh
 
     - type: files
       files:
@@ -169,27 +140,18 @@ modules:
         - source: system/etc
           destination: /etc
 
-    - type: gschema-overrides
-      include:
-        - zz1-wayblue-theming.gschema.override
-
     - type: script
       scripts:
-        - addbrewjustimport.sh
         - install-lix.sh
-        - install-lazyvim.sh
-#        - enableniridms.sh
 
     - type: systemd
       user:
         enabled:
-          - wayblue-update-verification.service
           - niri.service
           - dms.service
           - dms-greetd.service
       system:
         enabled:
-          - wayblue-rpm-ostreed-conf.service
           - nix-overlay.service
           - nix-daemon.service
           - nix-daemon.socket
