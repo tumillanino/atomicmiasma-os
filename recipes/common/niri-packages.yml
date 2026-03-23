@@ -9,9 +9,3 @@ modules:
         - swaylock
         - swayidle
         - swaybg
-
-    - type: files
-      files:
-        - source: system/niri
-          destination: /
-

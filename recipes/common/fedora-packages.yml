@@ -3,14 +3,6 @@ modules:
       install:
         install-weak-deps: false
         packages:
-          - just
-          - powerstat
-
-
-    - type: dnf
-      install:
-        install-weak-deps: false
-        packages:
         # launcher
           - rofi-wayland
           - wofi
