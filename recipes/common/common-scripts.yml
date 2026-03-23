@@ -9,3 +9,4 @@ modules:
     - type: script
       scripts:
         - install-lix.sh
+        - enable-greetd.sh

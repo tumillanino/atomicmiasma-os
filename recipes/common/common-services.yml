@@ -12,7 +12,3 @@ modules:
           - nix-daemon.service
           - nix-daemon.socket
 
-    - type: system
-      etc:
-        enabled:
-          - greetd.service
